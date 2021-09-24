@@ -1,12 +1,12 @@
-Queens: 
+## Queens
 First version made; failed due to StackOverflowError because of deep recursion 
 
-QueensNoRec: 
+## QueensNoRec: 
 Second version made 
 Mostly a main method with the important code in Boards 
 
-Boards: 
+## Boards: 
 Creates a board object that holds board data and manipulates it 
 
 
-Run compile and run QueensNoRec in the same folder as Boards 
+<p>Run compile and run QueensNoRec in the same folder as Boards </p>
