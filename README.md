@@ -1,4 +1,4 @@
-# Run compile and run QueensNoRec in the same folder as Boards 
+# Compile and run QueensNoRec in the same folder as Boards 
 
 ## Queens
 First version made; failed due to StackOverflowError because of deep recursion 
