@@ -24,34 +24,34 @@ public class Board {
     }
 
     public int placeQueen(int row) {
-        //System.out.println("[" + row + ", " + board[row] + "]");
+        // System.out.println("[" + row + ", " + board[row] + "]");
 
         if (!isDefault && firstRun) {
-            int setback = 1;
+            int startRow = 0;
             for (int j = board.length - 1; j >= 0; j--) {
                 if (board[j] != board.length - 1) {
-                    setback = row - j + 1;
+                    startRow = j;
                     firstRun = false;
                     break;
                 }
             }
             //System.out.println(setback);
-            board[row - setback] += 1;
+            board[startRow] += 1;
             //reset future rows
-            for (int j = row - setback + 1; j < board.length; j++) {
+            for (int j = startRow + 1; j < board.length; j++) {
                 board[j] = board.length + 1;
             }
-            return row - setback;
+            return startRow;
         }
 
-        //if board default, start with the queen at the 0th column for each row
+        //if board row default, start with the queen at the 0th column for each row
         if (board[row] == board.length + 1) {
             board[row] = 0;
         }
 
 
         //shows board state
-        //generateDisplay();
+        // generateDisplay();
 
         if (row < board.length) {
             //check col
@@ -61,13 +61,24 @@ public class Board {
 
                     //check how many rows back u need to go
                     if (board[row] == board.length) {
-                        int setback = 1;
-                        for (int j = row - 1; j >= 0; j--) {
-                            if (board[j] == board.length - 1) {
-                                setback = row - j + 1;
+
+                        //check how many rows back u can go
+                        int minRow = 0;
+                        for (int j = 0; j < board.length; j++) {
+                            if (board[j] != board.length) {
+                                minRow = j;
+                                break;
                             }
                         }
-                        //System.out.println(setback);
+
+                        int setback = 1;
+                        for (int j = row - 1; j >= minRow; j--) {
+                            if (board[j] != board.length - 1) {
+                                setback = row - j;
+                                break;
+                            }
+                        }
+                        // System.out.println(minRow + " " + setback);
                         board[row - setback] += 1;
                         
                         //reset future rows
@@ -84,6 +95,7 @@ public class Board {
         //if row exceeds board, done
         if (row + 1 == board.length) {
             boardNumber += 1;
+            System.out.println("_______________________________________________________________________________________________________________"); 
             System.out.println("Board Number: " + boardNumber); 
             this.generateDisplay();
             if (!isDefault) {
